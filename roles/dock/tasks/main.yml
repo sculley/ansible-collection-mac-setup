@@ -1,10 +1,21 @@
 ---
-- name: Install dockutil.
-  community.general.homebrew:
-    name: dockutil
+# dockutil versions < 3 no longer work with MacOS 12.2+
+# https://github.com/kcrawford/dockutil/issues/127
+# Installing third-party tap to install dockutil 3
+- name: Ensure taps are setup
+  community.general.homebrew_tap:
+    name: sculley/cask
+
+- name: Install dockutil
+  homebrew_cask:
+    name: sculley/cask/dockutil
     state: present
+    accept_external_apps: yes
+    sudo_password: "{{ ansible_become_password | default(omit) }}"
+  loop: "{{ homebrew_cask_apps }}"
   notify:
     - Clear homebrew cache
+  no_log: true
 
 - name: Remove configured Dock items.
   ansible.builtin.include_tasks: dock-remove.yml

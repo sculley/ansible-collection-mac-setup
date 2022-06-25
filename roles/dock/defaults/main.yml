@@ -12,3 +12,9 @@ dockitems_persist: []
 # - name: "Sublime Text"
 #   path: "/Applications/Sublime Text.app/"
 #   pos: 5
+
+# List of third-party homebrew taps to install
+# Required to add third-party source for dockutil 3 which fixes the issue with
+# dockutil in MacOS 12.4+ now python2 no longer is shipped
+dockitems_taps:
+ - sculley/cask
