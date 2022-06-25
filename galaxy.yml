@@ -1,0 +1,47 @@
+---
+namespace: sculley
+name: mac_setup
+version: "1.1.4"
+readme: README.md
+
+authors:
+  - sculley
+
+description: An Ansible Collection containing various roles to automate setting up MacOS
+
+# Either a single license or a list of licenses for content inside of a collection. Ansible Galaxy currently only
+# accepts L(SPDX,https://spdx.org/licenses/) licenses. This key is mutually exclusive with 'license_file'
+license:
+  - MIT
+
+# A list of tags you want to associate with the collection for indexing/searching. A tag name has the same character
+# requirements as 'namespace' and 'name'
+tags:
+  - mac
+  - macos
+  - osx
+  - homebrew
+  - brew
+  - workstation
+  - dev
+  - mas
+  - appstore
+  - apps
+  - configure
+  - development
+  - apple
+  - ios
+  - macbook
+  - imac
+  - macmini
+  - server
+
+dependencies:
+  community.general: ">=3.0.0"
+
+repository: https://github.com/sculley/ansible-collection-mac-setup
+documentation: https://github.com/sculley/ansible-collection-mac-setup
+homepage: https://www.samculley.co.uk
+issues: https://github.com/sculley/ansible-collection-mac-setup/issues
+
+build_ignore: []
