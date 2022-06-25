@@ -10,7 +10,7 @@
   homebrew_cask:
     name: sculley/cask/dockutil
     state: present
-    accept_external_apps: yes
+    accept_external_apps: true
     sudo_password: "{{ ansible_become_password | default(omit) }}"
   loop: "{{ homebrew_cask_apps }}"
   notify:
