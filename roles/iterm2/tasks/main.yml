@@ -36,10 +36,16 @@
   ansible.builtin.pip:
     name: iterm2
 
+- name: Create Scripts dir if it doesn't exist
+  ansible.builtin.file:
+    path: "~/Scripts"
+    state: directory
+    mode: '0755'
+
 - name: Ensure Set DynamicProfiles Default Profile script is downloaded
   uri:
     url: "{{ iterm2_set_dynamic_default_profile_script_url }}"
-    dest:  "~/Library/Application Support/iTerm2/Scripts/"
+    dest:  "~/Scripts/"
   when: iterm2_set_dynamic_default_profile_script_url != ""
 
 - name: Ensure iterm python api is enabled
@@ -49,3 +55,7 @@
     type: int
     value: 1
     state: present
+
+- name: Run DynamicProfiles Default Profile script
+  script:  "~/Scripts/{{ iterm2_set_dynamic_default_profile_script_name }}"
+  when: iterm2_set_dynamic_default_profile_script_name != ""

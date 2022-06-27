@@ -11,11 +11,9 @@
     name: sculley/cask/dockutil
     state: present
     accept_external_apps: true
-    sudo_password: "{{ ansible_become_password | default(omit) }}"
   loop: "{{ homebrew_cask_apps }}"
   notify:
     - Clear homebrew cache
-  no_log: true
 
 - name: Remove configured Dock items.
   ansible.builtin.include_tasks: dock-remove.yml

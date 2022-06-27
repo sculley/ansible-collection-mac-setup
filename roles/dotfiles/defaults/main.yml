@@ -1,0 +1,9 @@
+---
+dotfiles_repo_raw_path: ""
+dotfiles_repo_version: master
+dotfiles_home: "~"
+dotfiles_files:
+  - .zshrc
+  - .gitignore
+  - .inputrc
+  - .vimrc
