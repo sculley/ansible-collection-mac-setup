@@ -1,0 +1,51 @@
+---
+- name: Ensure iTerm directories are initialized if they are not already.
+  command: "open -a /Applications/iTerm.app"
+  args:
+    creates: "~/Library/Application Support/iTerm2/DynamicProfiles/"
+
+- name: Ensure fonts are installed.
+  get_url:
+    url: "{{ item }}"
+    dest: "~/Library/Fonts"
+  with_items: "{{ iterm2_font_urls }}"
+  when: iterm2_font_urls is defined
+
+- name: Ensure external DynamicProfiles are downloaded to iTerm2 directory.
+  uri:
+    url: "{{ item }}"
+    dest:  "~/Library/Application Support/iTerm2/DynamicProfiles/"
+  with_items: "{{ iterm2_dynamic_profile_urls }}"
+  when: iterm2_dynamic_profile_urls is defined
+
+- name: Ensure shell integration is installed.
+  shell: curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
+  args:
+    warn: no
+  when: iterm2_shell_integration is defined and iterm2_shell_integration
+
+- name: Ensure iterm2 is using minimal theme
+  community.general.osx_defaults:
+    domain: com.googlecode.iterm2
+    key: TabStyleWithAutomaticOption
+    type: int
+    value: 5
+    state: present
+
+- name: Install iterm2 package
+  ansible.builtin.pip:
+    name: iterm2
+
+- name: Ensure Set DynamicProfiles Default Profile script is downloaded
+  uri:
+    url: "{{ iterm2_set_dynamic_default_profile_script_url }}"
+    dest:  "~/Library/Application Support/iTerm2/Scripts/"
+  when: iterm2_set_dynamic_default_profile_script_url != ""
+
+- name: Ensure iterm python api is enabled
+  community.general.osx_defaults:
+    domain: com.googlecode.iterm2
+    key: EnableAPIServer
+    type: int
+    value: 1
+    state: present

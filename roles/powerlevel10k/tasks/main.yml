@@ -1,0 +1,20 @@
+---
+- name: Ensure powerlevel10k is installed
+  homebrew:
+    name: "{{ p10k_homebrew_name }}"
+    state: "{{ p10k_homebrew_state }}"
+
+- name: Insert p10k block in .zshrc
+  blockinfile:
+    path: "~/.zshrc"
+    marker: "# powerlevel10k block"
+    block: |
+      source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+      # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+      [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+- name: Download .p10k.zsh
+  get_url:
+    url: "{{ p10k_config_file_url }}"
+    dest: "~/.p10k.zsh"
+    mode: '0700'

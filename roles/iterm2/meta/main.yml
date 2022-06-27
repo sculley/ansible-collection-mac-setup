@@ -1,0 +1,15 @@
+galaxy_info:
+  author: Sam Culley
+  description: Installs and configures iTerm2 fonts and profiles for Mac OS
+  license: license (MIT)
+  min_ansible_version: 2.1
+  platforms:
+    - name: MacOSX
+      versions:
+      - all
+  galaxy_tags:
+    - development
+    - iterm2
+    - macos
+
+dependencies: []
