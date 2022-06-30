@@ -1,6 +1,6 @@
 ---
 iterm2_font_urls: []
 iterm2_dynamic_profile_urls: []
-iterm2_shell_integration: yes
+iterm2_shell_integration: true
 iterm2_set_dynamic_default_profile_script_url: ""
 iterm2_set_dynamic_default_profile_script_name: ""

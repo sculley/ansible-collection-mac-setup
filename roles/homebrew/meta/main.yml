@@ -1,12 +1,13 @@
+---
 galaxy_info:
   author: Sam Culley
   description: Installs and configures homebrew and applications
   license: license (MIT)
-  min_ansible_version: 2.1
+  min_ansible_version: "2.1"
   platforms:
     - name: MacOSX
       versions:
-      - all
+        - all
   galaxy_tags:
     - development
     - macos
@@ -14,6 +15,7 @@ galaxy_info:
     - cask
     - brew
     - software
-    - package manager
+    - package
+    - manager
 
 dependencies: []
