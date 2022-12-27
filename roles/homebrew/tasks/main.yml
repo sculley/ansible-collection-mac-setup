@@ -96,7 +96,11 @@
   become: true
   loop: "{{ homebrew_folders_base + homebrew_folders_additional }}"
 
-- name: Apply homebrew
+- name: Collect package manager fact.
+  setup:
+    filter: ansible_pkg_mgr
+
+- name: Perform brew installation.
   block:
     - name: Force update brew after installation.
       command: "{{ homebrew_brew_bin_path }}/brew update --force"
@@ -131,7 +135,6 @@
       loop: "{{ homebrew_cask_apps }}"
       notify:
         - Clear homebrew cache
-      no_log: true
 
     # Brew.
     - name: Ensure blacklisted homebrew packages are not installed.
