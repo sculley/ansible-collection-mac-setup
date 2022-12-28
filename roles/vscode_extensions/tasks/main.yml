@@ -1,0 +1,19 @@
+- name: Check for vscode
+  ansible.builtin.command: "code --version"
+  register: vscode_installed
+  ignore_errors: true
+  check_mode: false
+  changed_when: false
+
+- name: List installed extensions
+  ansible.builtin.command: "code --list-extensions"
+  register: vscode_extensions_installed
+  when: vscode_installed.rc == 0
+  check_mode: false
+  changed_when: false
+
+- name: Install vscode extensions
+  ansible.builtin.command:
+    cmd: "code --install-extension {{ item }}"
+  loop: "{{ vscode_extensions }}"
+  when: vscode_installed.rc == 0 and item not in vscode_extensions_installed.stdout_lines
