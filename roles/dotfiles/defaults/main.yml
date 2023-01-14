@@ -1,6 +1,6 @@
 ---
 dotfiles_repo_raw_path: ""
-dotfiles_repo_version: master
+dotfiles_repo_version: main
 dotfiles_home: "~"
 dotfiles_files:
   - .zshrc
