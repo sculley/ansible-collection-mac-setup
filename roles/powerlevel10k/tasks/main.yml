@@ -1,8 +1,8 @@
 ---
 - name: Ensure powerlevel10k is installed
-  homebrew:
+  community.general.homebrew:
     name: "{{ p10k_homebrew_name }}"
-    state: "{{ p10k_homebrew_state }}"
+    state: "{{ p10k_homebrew_state }}"  # noqa: args[module]
 
 - name: Insert p10k block in .zshrc
   blockinfile:

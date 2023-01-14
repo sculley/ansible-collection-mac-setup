@@ -6,4 +6,4 @@
     repo: "https://github.com/robbyrussell/oh-my-zsh.git"
     dest: "{{ ansible_env.HOME + '/.oh-my-zsh' }}"
     version: master
-    update: yes
+    update: true
