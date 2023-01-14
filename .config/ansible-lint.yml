@@ -1,7 +1,0 @@
----
-skip_list:
-  - risky-file-permissions
-  - yaml
-  - fqcn-builtins
-  - '306'
-  - 'name[template]'
