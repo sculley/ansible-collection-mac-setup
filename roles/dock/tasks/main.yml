@@ -7,7 +7,7 @@
     name: sculley/cask
 
 - name: Install dockutil
-  homebrew_cask:
+  community.general.homebrew_cask:
     name: sculley/cask/dockutil
     state: present
     accept_external_apps: true

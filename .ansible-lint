@@ -3,3 +3,4 @@ skip_list:
   - yaml
   - fqcn-builtins
   - '306'
+  - 'name[template]'
