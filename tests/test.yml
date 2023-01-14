@@ -15,7 +15,19 @@
       - .vimrc
       - .iterm2_shell_integration.zsh
 
+    homebrew_installed_packages:
+      - awscli
+      - terraform-variable-generator
+      - terraform-variable-sort
+    homebrew_taps:
+      - homebrew/core
+      - homebrew/cask
+      - sculley/formula
+    homebrew_cask_apps:
+      - 1password-cli
+
   roles:
     - role: elliotweiser.osx-command-line-tools
     - role: sculley.mac_setup.ohmyzsh
     - role: sculley.mac_setup.dotfiles
+    - role: sculley.mac_setup.homebrew
