@@ -30,4 +30,3 @@
     - role: elliotweiser.osx-command-line-tools
     - role: sculley.mac_setup.ohmyzsh
     - role: sculley.mac_setup.dotfiles
-    - role: sculley.mac_setup.homebrew
