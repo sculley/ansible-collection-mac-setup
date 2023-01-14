@@ -1,3 +1,4 @@
+---
 - name: Check for vscode
   ansible.builtin.command: "code --version"
   register: vscode_installed
