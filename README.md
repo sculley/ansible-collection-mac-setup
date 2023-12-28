@@ -4,12 +4,12 @@
 [![Galaxy Collection][badge-collection]][link-galaxy]
 [![CI][badge-gh-actions]][link-gh-actions]
 
-This collection includes helpful Ansible roles and content to help with macOS automation. For a good example of the collection's usage, see the [Mac Setup Playbook](https://github.com/sculley/ansible-mac-setup-playbook).
-
 Roles included in this collection (click on the link to see the role's README and documentation):
 
-  - `sculley.mac_setup.homebrew` ([documentation](https://github.com/sculley/ansible-collection-mac-setup/blob/master/roles/homebrew/README.md))
-  - `sculley.mac_setup.dock` ([documentation](https://github.com/sculley/ansible-collection-mac-setup/blob/master/roles/dock/README.md))
+  - `sculley.mac_setup.iterm2` ([documentation](https://github.com/sculley/ansible-collection-mac-setup/blob/master/roles/iterm2/README.md))
+  - `sculley.mac_setup.ohmyzsh` ([documentation](https://github.com/sculley/ansible-collection-mac-setup/blob/master/roles/ohmyzsh/README.md))
+  - `sculley.mac_setup.powerlevel10k` ([documentation](https://github.com/sculley/ansible-collection-mac-setup/blob/master/roles/powerlevel10k/README.md))
+  - `sculley.mac_setup.vscode` ([documentation](https://github.com/sculley/ansible-collection-mac-setup/blob/master/roles/vscode/README.md))
 
 ## Installation
 
@@ -26,8 +26,6 @@ Or include this collection in your playbook's `requirements.yml` file:
 collections:
   - name: sculley.mac
 ```
-
-For a real-world example, see my [Mac Setup Playbook requirements file](https://github.com/sculley/ansible-mac-setup-playbook/blob/master/requirements.yml).
 
 ### Role Requirements
 
@@ -52,29 +50,17 @@ Here's an example playbook which installs some Mac Apps (assuming you are signed
   gather_facts: false
 
   vars:
-    mas_installed_app_ids:
-      - 424389933 # Final Cut Pro
-      - 497799835 # Xcode
-
-    homebrew_installed_packages:
-      - node
-      - nvm
-      - redis
-      - ssh-copy-id
-      - pv
-
-    homebrew_cask_apps:
-      - docker
-      - firefox
-      - google-chrome
-      - vlc
+    iterm2_font_urls:
+      - https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+    iterm2_dynamic_profile_urls:
+      - https://raw.githubusercontent.com/sculley/iterm2-setup/main/MacOS-iTerm2.json
+    iterm2_shell_integration: true
+    iterm2_set_dynamic_default_profile_script_url: "https://raw.githubusercontent.com/sculley/iterm2-setup/main/set-dynamic-default-profile.py"
+    iterm2_set_dynamic_default_profile_script_name: "set-dynamic-default-profile.py"
 
   roles:
-    - sculley.mac.homebrew
-    - sculley.mac.mas
+    - sculley.mac.iterm2
 ```
-
-For a real-world usage example, see my [Mac Setup Playbook](https://github.com/sculley/ansible-mac-setup-playbook).
 
 See the full documentation for each role in the role's README, linked above.
 

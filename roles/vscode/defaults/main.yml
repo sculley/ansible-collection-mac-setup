@@ -1,0 +1,7 @@
+---
+vscode_extensions: []
+
+vscode_repo: "https://github.com/sculley/vscode-setup.git"
+vscode_repo_version: main
+vscode_repo_accept_hostkey: false
+vscode_repo_local_destination: "~/Development/GitHub/vscode-setup"

@@ -27,6 +27,8 @@
 
 - name: Ensure shell integration is installed.
   ansible.builtin.command: bash /tmp/install_shell_integration.sh
+  register: shell_integration_install_results
+  changed_when: shell_integration_install_results.rc != 0
   when: iterm2_shell_integration is defined and iterm2_shell_integration
 
 - name: Ensure iterm2 is using minimal theme

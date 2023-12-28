@@ -1,0 +1,57 @@
+---
+- name: Install vscode.
+  community.general.homebrew_cask:
+    name: visual-studio-code
+    state: present
+    install_options: "appdir={{ homebrew_cask_appdir }}"
+    sudo_password: "{{ ansible_become_password | default(omit) }}"
+  when: ansible_os_family == 'Darwin'
+
+- name: Check for vscode.
+  ansible.builtin.command: "code --version"
+  register: vscode_installed
+  ignore_errors: true
+  check_mode: false
+  changed_when: false
+
+- name: List installed extensions.
+  ansible.builtin.command: "code --list-extensions"
+  register: vscode_extensions_installed
+  when: vscode_installed.rc == 0
+  check_mode: false
+  changed_when: false
+
+- name: Install vscode extensions.
+  ansible.builtin.command:
+    cmd: "code --install-extension {{ item }}"
+  loop: "{{ vscode_extensions }}"
+  when: vscode_installed.rc == 0 and item not in vscode_extensions_installed.stdout_lines
+  register: vscode_extensions_installed
+  changed_when: vscode_extensions_installed.rc == 0
+
+- name: Ensure vscode-setup repository is cloned locally.
+  git:
+    repo: "{{ vscode_repo }}"
+    dest: "{{ vscode_repo_local_destination }}"
+    version: "{{ vscode_repo_version }}"
+    accept_hostkey: "{{ vscode_repo_accept_hostkey }}"
+  become: false
+
+- name: Check if settings.json is a symlink
+  stat:
+    path: "{{ ansible_env.HOME }}/Library/Application Support/Code/User/settings.json"
+  register: settings_json_stat
+
+- name: Remove settings.json if it's not a symlink
+  file:
+    path: "{{ ansible_env.HOME }}/Library/Application Support/Code/User/settings.json"
+    state: absent
+  when: not settings_json_stat.stat.islnk
+
+- name: Link settings.json file.
+  file:
+    src: "{{ vscode_repo_local_destination }}/settings.json"
+    dest: "{{ ansible_env.HOME }}/Library/Application Support/Code/User/settings.json"
+    state: link
+    mode: 0644
+  become: false
