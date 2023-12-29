@@ -3,3 +3,5 @@ ancestor: null
 releases:
   1.2.4:
     release_date: '2023-12-28'
+  1.2.5:
+    release_date: '2023-12-29'
