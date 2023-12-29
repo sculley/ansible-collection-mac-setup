@@ -7,11 +7,12 @@
 - name: Insert p10k block in .zshrc
   blockinfile:
     path: "~/.zshrc"
-    insertafter: "# powerlevel10k"
+    insertafter: EOF
     block: |
-      source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
-      # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+      # powerlevel10k
+      [[ ! -f /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme ]] || source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
       [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+  when: powerlevel10k_zshrc_block
 
 - name: Download .p10k.zsh
   get_url:

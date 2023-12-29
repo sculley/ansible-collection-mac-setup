@@ -1,2 +1,3 @@
 ---
 powerlevel10k_config_file_url: ""
+powerlevel10k_zshrc_block: true
