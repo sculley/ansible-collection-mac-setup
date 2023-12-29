@@ -1,9 +1,0 @@
----
-- name: Ensure dotfiles are downloaded
-  ansible.builtin.get_url:
-    url: "{{ dotfiles_repo_raw_path }}/{{ dotfiles_repo_version }}/{{ item }}"
-    dest: "{{ dotfiles_home }}"
-    mode: '0700'
-    backup: true
-    force: true
-  loop: "{{ dotfiles_files }}"

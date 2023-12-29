@@ -5,15 +5,13 @@ name: CI
   push:
     branches:
       - main
-  schedule:
-    - cron: "0 1 * * *"
+      - release/*
 
 defaults:
   run:
     working-directory: ansible_collections/sculley/mac_setup
 
 jobs:
-
   lint:
     name: Lint
     runs-on: ubuntu-latest

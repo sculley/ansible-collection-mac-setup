@@ -1,7 +1,7 @@
 ansible-vscode-extensions-role
 =========
 
-An Ansible role to install Visual Code Studio extensions
+An Ansible role to install & Configure Visual Code Studio
 
 ![CI](https://github.com/sculley/ansible-collection-mac-setup/actions/workflows/ci.yml/badge.svg)
 ![Build](https://github.com/sculley/ansible-collection-mac-setup/actions/workflows/release.yml/badge.svg)

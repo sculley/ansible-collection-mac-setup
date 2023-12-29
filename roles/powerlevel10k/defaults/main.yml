@@ -1,4 +1,2 @@
 ---
-p10k_homebrew_name: "romkatv/powerlevel10k/powerlevel10k"
-p10k_homebrew_state: "present"
-p10k_config_file_url: ""
+powerlevel10k_config_file_url: ""
